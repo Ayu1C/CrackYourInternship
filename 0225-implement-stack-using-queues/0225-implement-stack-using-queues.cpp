@@ -23,23 +23,25 @@ public:
             helper.pop();
         }
         return ans;
+        
     }
     
     int top() {
-        while(q1.size()>1)
-        {
-            helper.push(q1.front());
-            q1.pop();
-        }
-        int ans = q1.front();
-        helper.push(q1.front());
-        q1.pop();
-        while(!helper.empty())
-        {
-            q1.push(helper.front());
-            helper.pop();
-        }
-        return ans;
+        // while(q1.size()>1)
+        // {
+        //     helper.push(q1.front());
+        //     q1.pop();
+        // }
+        // int ans = q1.front();
+        // helper.push(q1.front());
+        // q1.pop();
+        // while(!helper.empty())
+        // {
+        //     q1.push(helper.front());
+        //     helper.pop();
+        // }
+        // return ans;
+        return q1.back();
     }
     
     bool empty() {
