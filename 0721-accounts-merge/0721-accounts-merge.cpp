@@ -56,7 +56,7 @@ public:
        
         int n = accounts.size();
         DisjointSet ds(n);
-        sort(accounts.begin(), accounts.end());
+        // sort(accounts.begin(), accounts.end());
         unordered_map<string, int> mapMailNode;
         for (int i = 0; i < n; i++) {
             for (int j = 1; j < accounts[i].size(); j++) {
