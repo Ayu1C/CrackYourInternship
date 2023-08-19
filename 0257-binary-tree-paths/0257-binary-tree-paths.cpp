@@ -16,9 +16,9 @@ public:
     
     void solve(TreeNode* root,string s){
         if(!root){
-            if(s!="")
-            return;
-            else
+            // if(s!="")
+            // return;
+            // else
             v.push_back(s);
             return;
         }
