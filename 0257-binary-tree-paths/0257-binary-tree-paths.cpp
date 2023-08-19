@@ -33,8 +33,6 @@ public:
         if(root->right)
         solve(root->right,s);
         
-       
-        
 }
 
     vector<string> binaryTreePaths(TreeNode* root) {
