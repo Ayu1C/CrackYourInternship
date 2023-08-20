@@ -11,7 +11,7 @@ public:
         {
             if(i>maxReach) return false;
             
-            if((nums[i]==0 && maxReach <=i) || maxReach < i) return false;
+            if(nums[i]==0 && maxReach <=i) return false;
             
             maxReach = max(i+nums[i], maxReach); 
         }
