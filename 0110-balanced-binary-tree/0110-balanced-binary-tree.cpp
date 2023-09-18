@@ -27,4 +27,5 @@ public:
         
         return abs(leftHeight - rightHeight) <= 1 && isBalanced(root->left) && isBalanced(root->right);
     }
+    
 };
