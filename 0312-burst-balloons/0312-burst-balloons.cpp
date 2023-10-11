@@ -2,7 +2,7 @@ class Solution {
 public:
     
     int n;
-    int t[501][501]; // For memoization
+    int t[303][303]; // For memoization
     int solve(vector<int> &nums, int i, int j){
 		// BASE CASES
 		if(i > j)
