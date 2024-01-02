@@ -1,25 +1,35 @@
 class Solution {
+public:
     
-private:
-    void backtrack(string combination, string next_digits, string phone_map[], vector<string>& output) {
-        if (next_digits.empty()) {
+    void backtrack(string combination, string digits, map<char, string>& buttons, vector<string>& output)
+    {
+        if(digits.length()==0)
+        {
             output.push_back(combination);
-        } else {
-            string letters = phone_map[next_digits[0] - '2'];
-            for (char letter : letters) {
-                backtrack(combination + letter, next_digits.substr(1), phone_map, output);
+            return;
+        } else{
+            
+            for(char c : buttons[digits[0]])
+            {
+                backtrack(combination + c, digits.substr(1), buttons, output);
             }
         }
     }
     
     
-public:
     vector<string> letterCombinations(string digits) {
-        if (digits.empty()) return {};
-
-        string phone_map[] = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-        vector<string> output;
-        backtrack("", digits, phone_map, output);
+        
+        map<char, string> buttons;
+        buttons['2'] = "abc"; buttons['3'] = "def"; buttons['4'] = "ghi"; buttons['5'] = "jkl"; buttons['6'] = "mno"; buttons['7'] = "pqrs"; buttons['8'] = "tuv"; buttons['9'] = "wxyz";
+        
+        
+        if(digits.length()==0) return {};
+        
+         vector<string> output;
+        
+        backtrack("", digits, buttons, output);
+        
         return output;
+        
     }
 };
