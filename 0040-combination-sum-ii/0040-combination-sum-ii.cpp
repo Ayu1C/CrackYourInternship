@@ -1,29 +1,36 @@
 class Solution {
 public:
     
-    void backtrack(vector<vector<int>>& res, vector<int> temp, vector<int>& nums, int remain, int start)
+    //basic concept - at every index we are checking, if on taking this ele in our curr combination, we are getting result or not, if got, add to combinations, else backtrack and remove this element, and move to next index..
+    
+    void backtrack(vector<int> cur_comb, int index, vector<int>& candidates, int target, vector<vector<int>>& res)
     {
-       if(remain < 0) return;
-       else if(remain==0) res.push_back(temp);
-        else{
-            
-            for(int i=start; i<nums.size(); i++)
-            {
-                if(i>start && nums[i]==nums[i-1]) continue;
-                temp.push_back(nums[i]);
-                backtrack(res, temp, nums, remain-nums[i], i+1);
-                temp.pop_back();
-            }
+        if(target==0)
+        {
+           res.push_back(cur_comb);
+            return;
+        }
+        
+        if(index >= candidates.size() || target < 0) return;
+        
+        for(int i=index; i<candidates.size(); i++)
+        {
+             if(i>index && candidates[i]==candidates[i-1]) continue;
+            cur_comb.push_back(candidates[i]);
+            backtrack(cur_comb, i+1, candidates, target-candidates[i], res);
+            cur_comb.pop_back();
         }
     }
     
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-       
-        vector<vector<int>> res;
+        
         sort(candidates.begin(), candidates.end());
-       
-        backtrack(res, {}, candidates, target, 0);
-         
+        
+        vector<vector<int>> res;
+        
+        backtrack({}, 0, candidates, target, res);
+        
         return res;
     }
 };
+
