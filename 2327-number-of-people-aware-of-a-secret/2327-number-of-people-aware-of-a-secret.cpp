@@ -9,11 +9,11 @@ public:
         memo[0]=0;  // End case
         for(int i=1;i<=n;i++)
         {
-            for(int j=delay;j<forget;j++)
+            for(int j=i+delay;j<i+forget;j++)
             {
                 // Number of people that the secret will be forwarded to
-                if(i-j>=0)
-                    memo[i]=(memo[i]+memo[i-j])%MOD;    // Same as our recursion relation.
+                if(j<=n)
+                    memo[j]=(memo[j]+memo[i])%MOD;    // Same as our recursion relation.
                 //i-j means ki at ith day, ek person ko to share hua he, this is person A who knew already, hum usme add karenge ki aj se delay din pehle jin logo ko pta tha, wo aaj share kar sakte, aur uske pehle ke din ke bhi sab log jinne share kiya, lekin agr 4 din pehle koi bhul gya ho to hum 4 din pehle ka count nhi karenge Read recurrence relation at top for more info.
              }
         }
