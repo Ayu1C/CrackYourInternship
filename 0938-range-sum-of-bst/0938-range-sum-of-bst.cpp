@@ -11,35 +11,22 @@
  */
 class Solution {
 public:
+    int sum = 0;
     
-    void inorder(TreeNode* root, vector<int>& bst)
+    void inorder(TreeNode* root, int low, int high)
     {
-       if(!root) return;
+        if(!root) return;
         
-        inorder(root->left, bst);
-        bst.push_back(root->val);
-        inorder(root->right, bst);
+        inorder(root->left, low, high);
+        if(root->val >= low && root->val <= high) sum += root->val;
+        inorder(root->right, low, high);
     }
     
     int rangeSumBST(TreeNode* root, int low, int high) {
-       
-        vector<int> bst;
-        inorder(root, bst);
         
-        int sum = 0;
-        for(int i=0; i<bst.size(); i++)
-        {
-            if(bst[i]==low)
-            {
-                while(i<bst.size() && bst[i]<=high)
-                {
-                    sum += bst[i];
-                    i++;
-                }
-                break;
-            }
-        }
+        if(!root) return 0;
+        
+        inorder(root, low, high);
         return sum;
-        
     }
 };
