@@ -1,23 +1,18 @@
 class Solution {
 public:
-   bool wordBreak(string s, vector<string>& wordDict) {
-        int n = s.size();
-        vector<bool> dp(n + 1, false);
+    bool wordBreak(string s, vector<string>& wordDict) {
+        
+        vector<bool> dp(s.size()+1, 0);
         dp[0] = true;
-        int max_len = 0;
-        for (const auto& word : wordDict) {
-            max_len = max(max_len, static_cast<int>(word.size()));
-        }
-
-        for (int i = 1; i <= n; i++) {
-            for (int j = i - 1; j >= max(i - max_len - 1, 0); j--) {
-                if (dp[j] && find(wordDict.begin(), wordDict.end(), s.substr(j, i - j)) != wordDict.end()) {
+        unordered_set<string> set(wordDict.begin(), wordDict.end());
+        for(int i=1; i<=s.size(); i++){
+            for(int j=0; j<i; j++){
+                if(dp[j] && set.count(s.substr(j, i-j))){
                     dp[i] = true;
                     break;
                 }
             }
         }
-
-        return dp[n];
+        return dp[s.size()];
     }
 };
