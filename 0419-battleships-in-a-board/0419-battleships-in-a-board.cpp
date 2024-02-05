@@ -1,14 +1,32 @@
 class Solution {
 public:
-    int countBattleships(vector<vector<char>>& board) {
+    int countBattleships(vector<vector<char>>& A) {
         
-        if (board.empty() || board[0].empty()) { return 0; }
-        int m = board.size(), n = board[0].size(), cnt = 0;
+        int n = A.size(),m = A[0].size(),count=0;
         
-        for (int r = 0; r < m; r++)
-            for (int c = 0; c < n; c++)
-                cnt += board[r][c] == 'X' && (r == 0 || board[r - 1][c] != 'X') && (c == 0 || board[r][c - 1] != 'X');
-        
-        return cnt;
+        for( int i=0; i<n; i++ ){
+            for( int j=0; j<m; j++ ){
+                
+                if( A[i][j]=='X' ){ // battleship start only from X, we do need to worry about "."
+                    
+                    if( i==0 && j==0 ) count++; // for edge case ( 0,0 )
+                    
+                    else if( i==0 ) {           // for edge case of 0th row 
+                        if( A[i][j-1]!='X' )
+                            count++;
+                    }
+                     
+                    else if( j==0 ){            // for edge case of 0th column 
+                        if( A[i-1][j]!='X' )
+                            count++;
+                    }
+                    
+                    // case 1st which marks the starting point of battleship
+                    else if( A[i-1][j]=='.' && A[i][j-1]=='.') 
+                        count++;
+                }
+            }
+        }
+        return count;
     }
 };
