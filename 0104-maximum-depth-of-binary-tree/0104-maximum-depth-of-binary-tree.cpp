@@ -10,17 +10,33 @@
  * };
  */
 class Solution {
-public:
-
-   
-    int maxDepth(TreeNode* root) {
-       
-        if(!root) return 0;
     
-        int maxLeft = maxDepth(root->left);
+public:
+    
+    int height(int curHeight, TreeNode* root)
+    {
+       int h = curHeight;
         
-        int maxRight = maxDepth(root->right);
+       if(!root->left && !root->right) return curHeight;
         
-        return max(maxLeft, maxRight)+1;
+        if(root->left) h = height(curHeight+1, root->left);
+        
+        if(root->right) h = max(h, height(curHeight+1, root->right));
+        
+        return h;
+    }
+    
+    int maxDepth(TreeNode* root) {
+        
+        int h = 1;
+        
+        if(!root) return 0;
+        
+//         if(root->left) h = height(h+1, root->left);
+        
+//         if(root->right) h = max(h, height(h+1, root->right));
+        
+        return height(h, root);
+        
     }
 };
