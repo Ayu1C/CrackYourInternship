@@ -14,11 +14,6 @@ public:
     map<int, int> count;
     int max_freq = 0;
     
-//     static bool cmp(const pair<int, int>& a, const pair<int, int>& b) 
-//     { 
-//         return a.second < b.second; 
-//     } 
- 
     int treeSum(TreeNode* root) {
         
         if(root == nullptr) return 0;
@@ -38,16 +33,6 @@ public:
         int sum = treeSum(root);
         
         vector<int> ans;
-        
-//         vector<pair<int, int>> temp; 
-        
-//         for (auto& it : count) { 
-//            temp.push_back(it); 
-//         }  
-        
-//         sort(temp.begin(), temp.end(), cmp);
-        
-        // int highestF = temp.end()->second;
         
         for(auto& it : count) {
             if(it.second == max_freq) ans.push_back(it.first);
