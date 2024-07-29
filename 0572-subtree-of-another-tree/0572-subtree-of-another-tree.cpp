@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    
+   
     bool isSame(TreeNode* root, TreeNode* subRoot) {
         if (root == NULL && subRoot == NULL) {
             return true;
