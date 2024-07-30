@@ -12,20 +12,21 @@
 class Solution {
 public:
     
-    bool Symmetric(TreeNode* left, TreeNode* right)
-    {
-        if(left==NULL && right==NULL) return true;
+    bool isSame(TreeNode* leftN, TreeNode* rightN) {
         
-        if(left==NULL && right != NULL) return false;
+        if(leftN==NULL && rightN==NULL) return true;
         
-        if(left != NULL && right==NULL) return false;
+        else if(leftN == NULL || rightN == NULL) return false;
         
-        return(left->val==right->val && Symmetric(left->left, right->right) && Symmetric(left->right, right->left));
+        else if(leftN->val != rightN->val) return false;
+        
+        return isSame(leftN->left, rightN->right) && isSame(leftN->right, rightN->left);
     }
     
     bool isSymmetric(TreeNode* root) {
+       
+        if(root == NULL) return true;
         
-        return(Symmetric(root->left, root->right));
-        
+        return isSame(root->left, root->right);
     }
 };
