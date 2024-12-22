@@ -2,22 +2,13 @@ class Solution {
 public:
     int missingNumber(vector<int>& nums) {
        
-        vector<int> count(nums.size()+1, 0);
-        int ans;
+        int n = nums.size();
+        int sum_of_n_num = (n*(n+1))/2, actual_sum = 0;
         
-        for(int i=0; i<nums.size(); i++)
-        {
-            count[nums[i]]++;
+        for(int i=0; i<n; i++){
+            actual_sum += nums[i];
         }
         
-        for(int i=0; i<count.size(); i++)
-        {
-            if(count[i]==0)
-            {
-               ans = i;
-                break;
-            }
-        }
-        return ans;
+        return sum_of_n_num - actual_sum;
     }
 };
