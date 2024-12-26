@@ -1,25 +1,20 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        map<int,int> m;
-        int ans;
-        for(int i=0; i<nums.size(); i++)
-        {
-           if(m.find(nums[i]) != m.end())
-           {
-               m[nums[i]]++;
-           }
-            else
-            {
-                m.insert(std::pair<int,int>(nums[i],1));
+       
+        //Moore's Voting algorithm
+        int n = nums.size();
+        int ele, count = 0;
+        
+        for(int i=0; i<n; i++) {
+            if(count == 0){
+                ele = nums[i];
+                count++;
             }
+            else if(ele == nums[i]) count++;
+            else count--;
         }
         
-        for(auto &i : m)
-        {
-            if((i.second) > nums.size()/2)
-                ans = i.first;
-        }
-        return ans;
+        return ele;
     }
 };
